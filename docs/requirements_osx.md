@@ -4,6 +4,7 @@
  - Mercurial (`brew install hg` or equivalent)
  - Clang (Available with Xcode on OSX)
  - Xcode tools `xcode-select --install`
+ - gettext `brew install gettext`
 
 ## Troubleshooting
 

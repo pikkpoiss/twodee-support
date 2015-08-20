@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-set -e  # Aborts if any step fails.
+set -e            # Aborts if any step fails.
+shopt -s nullglob # Don't return glob patterns if no file matches.
 
 . `git rev-parse --show-toplevel`/scripts/common.sh
+. $PROJECTROOT/scripts/env.sh
 
 if [ $# -ne 1 ]; then
   echo "Usage: $0 PATH"
@@ -41,18 +43,26 @@ else
 fi
 green "OK"
 
-echo -n "Copying files... "
-cp -r $ROOT/scripts/project/* $DESTPATH
+echo -n "Copying VARS (if it doesn't exist)... "
+cp --no-clobber $PROJECTROOT/bootstrap/VARS $DESTPATH
 green "OK"
 
-WIN_DLLS=$ROOT/build/usr/bin/*.dll
-if [ -n "$WIN_DLLS" ]; then
-  echo -n "Copying windows dlls... "
-  cp $WIN_DLLS $DESTPATH/lib/win32-x64/
-else
-  echo -n "Could not find windows dlls, doing nothing... "
-fi
-green "OK"
+cd $PROJECTROOT/bootstrap
+FILES=`find . -type f`
+cd $CWD
+source $DESTPATH/VARS
+for f in $FILES; do
+  echo -n "Rendering $f ... "
+  envsubst < f > $DESTPATH/f
+  green "OK"
+done
+
+WIN_DLLS=$PROJECTROOT/build/usr/bin/*.dll
+for f in $WIN_DLLS; do
+  echo -n "Copying windows dll $f ... "
+  cp $f $DESTPATH/lib/win32-x64/
+  green "OK"
+done
 
 GIT_REPO=`git config --get remote.origin.url`
 echo -n "Adding subproject '$GIT_REPO'... "
