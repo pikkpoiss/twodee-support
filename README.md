@@ -51,12 +51,24 @@ You can build a completely clean copy using:
 
 ## Using
 
+All go libs needed to run twodee projects have been installed to
+`twodee-support/build/usr/gocode`, including the twodee lib.
 
+In order to use the correct paths for running your code, you must
+run the following in your shell environment first:
 
-The twodee lib is not installed with `go get` like most Go libraries. Instead,
-bootstrap a project using the provided scripts.
+    ...PATH_TO.../twodee-support/scripts/env.sh
 
-### Initializing a project
+### Quick library use
+
+You can import
+
+    github.com/pikkpoiss/twodee
+
+In your projects if you don't need to have write access to twodee.  This
+will make your code work quickly but will be harder to build packages for.
+
+### Initializing a new twodee project
 
 Once you have the libraries installed, run:
 
