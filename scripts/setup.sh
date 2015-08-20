@@ -1,29 +1,7 @@
 #!/usr/bin/env bash
 
 . `git rev-parse --show-toplevel`/scripts/common.sh
-
-if [[ "$PLATFORM" == "win" ]]; then
-  export CC="/c/mingw64/mingw64/bin/x86_64-w64-mingw32-gcc"
-  export CXX="/c/mingw64/mingw64/bin/x86_64-w64-mingw32-g++"
-  # ROOT=`echo $ROOT | sed s/c:/\\\\/c/`
-elif [[ "$PLATFORM" == "osx" ]]; then
-  export CC="clang"
-  export CXX="clang++"
-fi
-
-BUILDROOT=$ROOT/build
-PREFIX=$BUILDROOT/usr
-SRCDIR=$PREFIX/src
-INCDIR=$PREFIX/include
-LIBDIR=$PREFIX/lib
-GOPATH=$PREFIX/gocode
-
-export LDFLAGS="-L$LIBDIR"
-export CPPFLAGS="-I$INCDIR $EXTRA_CPPFLAGS"
-export CFLAGS="-I$INCDIR $EXTRA_CPPFLAGS"
-export LD_LIBRARY_PATH="$PREFIX/bin"
-export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig"
-export GOPATH="$GOPATH"
+. $ROOT/scripts/env.sh
 
 green "INIT" "Prefix is $PREFIX, Platform is $PLATFORM"
 
@@ -257,7 +235,6 @@ fi
 export LDFLAGS=""
 export CPPFLAGS=""
 export CFLAGS=""
-export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig"
 export CGO_CFLAGS="-I$PREFIX/include"
 
 echo "CGO_CFLAGS=\"$CGO_CFLAGS\" CGO_LDFLAGS=\"$CGO_LDFLAGS\""
@@ -283,6 +260,5 @@ go get -u -v code.google.com/p/freetype-go/freetype/raster
 go get -u -v code.google.com/p/freetype-go/freetype/truetype
 go get -u -v github.com/robertkrimen/otto
 
-# Old
-# go get -u github.com/kurrik/Go-SDL/mixer
-# go get -u github.com/kurrik/Go-SDL/sdl
+# The main lib!
+go get -u -v -a github.com/pikkpoiss/twodee
