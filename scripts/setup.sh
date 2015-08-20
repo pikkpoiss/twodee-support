@@ -6,7 +6,6 @@ set -e  # Aborts if any step fails.
 . $PROJECTROOT/scripts/env.sh
 
 export LD_LIBRARY_PATH="$PREFIX/bin"
-export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig"
 export LDFLAGS="-L$LIBDIR"
 export CPPFLAGS="-I$INCDIR"
 export CFLAGS="-I$INCDIR"
@@ -243,9 +242,7 @@ fi
 export LDFLAGS=""
 export CPPFLAGS=""
 export CFLAGS=""
-export CGO_CFLAGS="-I$PREFIX/include"
-
-echo "CGO_CFLAGS=\"$CGO_CFLAGS\" CGO_LDFLAGS=\"$CGO_LDFLAGS\""
+export LD_LIBRARY_PATH=""
 
 if [[ "$PLATFORM" == "osx" ]]; then
   PKGCFG_FLAGS="--static"
@@ -253,20 +250,6 @@ else
   PKGCFG_FLAGS=""
 fi
 
-# Require libraries
-CGO_LDFLAGS="`pkg-config --libs $PKGCFG_FLAGS sdl2 SDL2_image`" \
-  go get -u -v -a github.com/scottferg/Go-SDL2/sdl
-CGO_LDFLAGS="`pkg-config --libs $PKGCFG_FLAGS SDL2_mixer vorbisfile vorbis ogg`" \
-  go get -u -v -a github.com/scottferg/Go-SDL2/mixer
-go get -u -v -a github.com/go-gl/glfw/v3.1/glfw
-
-# Do not require libraries
-go get -u -v github.com/go-gl/gl/v3.3-core/gl
-go get -u -v github.com/go-gl/mathgl/mgl32
-go get -u -v code.google.com/p/freetype-go/freetype
-go get -u -v code.google.com/p/freetype-go/freetype/raster
-go get -u -v code.google.com/p/freetype-go/freetype/truetype
-go get -u -v github.com/robertkrimen/otto
-
-# The main lib!
-go get -u -v -a github.com/pikkpoiss/twodee
+CGO_CFLAGS="-I$PREFIX/include" \
+CGO_LDFLAGS="`pkg-config --libs $PKGCFG_FLAGS sdl2 SDL2_image SDL2_mixer vorbisfile vorbis ogg`" \
+  go get -u -v -a github.com/pikkpoiss/twodee
