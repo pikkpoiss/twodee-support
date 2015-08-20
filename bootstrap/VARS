@@ -1,6 +1,6 @@
-2DPROJ_VERSION=1.0.0
-2DPROJ_PROJECT=testproject
+export TDP_VERSION=1.0.0
+export TDP_PROJECT=testproject
 
-2DPROJ_DESC="A stub Twodee project.  Version 9.9.9."
-2DPROJ_NAME="Test Project"
-2DPROJ_IDNT="us.regio.eg"
+export TDP_DESC="A stub Twodee project.  Version 9.9.9."
+export TDP_NAME="Test Project"
+export TDP_IDNT="us.regio.eg"

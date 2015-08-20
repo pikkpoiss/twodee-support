@@ -54,7 +54,7 @@ source $DESTPATH/VARS
 for f in $FILES; do
   echo -n "Rendering $f ... "
   mkdir -p `dirname $DESTPATH/$f`
-  echo "$(eval cat $PROJECTROOT/bootstrap/$f)" > $DESTPATH/$f
+  envsubst < $PROJECTROOT/bootstrap/$f > $DESTPATH/$f
   green "OK"
 done
 

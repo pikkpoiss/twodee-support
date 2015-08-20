@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
   <key>CFBundleGetInfoString</key>
-  <string>${2DPROJ_DESC}</string>
+  <string>${TDP_DESC}</string>
   <key>CFBundleExecutable</key>
   <string>launch.sh</string>
   <key>CFBundleIdentifier</key>
-  <string>${2DPROJ_IDNT}</string>
+  <string>${TDP_IDNT}</string>
   <key>CFBundleName</key>
-  <string>${2DPROJ_NAME}</string>
+  <string>${TDP_NAME}</string>
   <key>CFBundleIconFile</key>
   <string>icon.icns</string>
   <key>CFBundleShortVersionString</key>

@@ -4,7 +4,7 @@
  - Mercurial (`brew install hg` or equivalent)
  - Clang (Available with Xcode on OSX)
  - Xcode tools `xcode-select --install`
- - gettext `brew install gettext`
+ - gettext `brew install gettext` and add to `$PATH` (probably `/usr/local/opt/gettext/bin/`)
 
 ## Troubleshooting
 

@@ -28,7 +28,7 @@ type Application struct {
 
 func NewApplication() (app *Application, err error) {
 	var (
-		name             = "Ludum Dare 32"
+		name             = "Twodee sample project"
 		winbounds        = twodee.Rect(0, 0, 1024, 640)
 	)
 	if context, err = twodee.NewContext(); err != nil {

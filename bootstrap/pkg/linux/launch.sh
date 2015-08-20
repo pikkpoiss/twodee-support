@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-LD_LIBRARY_PATH=./libs ./${2DPROJ_PROJECT}
+LD_LIBRARY_PATH=./libs ./${TDP_PROJECT}
