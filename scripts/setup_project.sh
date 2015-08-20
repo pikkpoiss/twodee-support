@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e  # Aborts if any step fails.
+
 . `git rev-parse --show-toplevel`/scripts/common.sh
 
 if [ $# -ne 1 ]; then

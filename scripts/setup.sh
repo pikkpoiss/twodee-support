@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
+set -e  # Aborts if any step fails.
+
 . `git rev-parse --show-toplevel`/scripts/common.sh
-. $ROOT/scripts/env.sh
+. $PROJECTROOT/scripts/env.sh
+
+export LD_LIBRARY_PATH="$PREFIX/bin"
+export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig"
+export LDFLAGS="-L$LIBDIR"
+export CPPFLAGS="-I$INCDIR"
+export CFLAGS="-I$INCDIR"
 
 green "INIT" "Prefix is $PREFIX, Platform is $PLATFORM"
 
@@ -13,7 +21,7 @@ if [ -n "$CLEAN" ]; then
 fi
 
 mkdir -p $SRCDIR
-cp $ROOT/lib/*.{zip,tar.gz} $SRCDIR
+cp $PROJECTROOT/lib/*.{zip,tar.gz} $SRCDIR
 cd $SRCDIR
 
 ##### Helpers ##################################################################

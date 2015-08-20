@@ -1,6 +1,5 @@
-set -e  # Aborts if any step fails.
 
-ROOT=`git rev-parse --show-toplevel`
+PROJECTROOT=$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )
 
 if [[ "$(uname)" == "Darwin" ]]; then
   PLATFORM="osx"

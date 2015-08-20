@@ -57,7 +57,7 @@ All go libs needed to run twodee projects have been installed to
 In order to use the correct paths for running your code, you must
 run the following in your shell environment first:
 
-    ...PATH_TO.../twodee-support/scripts/env.sh
+    source <PATH_TO>/twodee-support/scripts/env.sh
 
 ### Quick library use
 
@@ -85,7 +85,7 @@ Be careful though, as it will overwrite any modifications.
 
 Include the twodee library by including the following path in your Go code:
 
-    "../lib/twodee/twodee"
+    "../lib/twodee"
 
 ### Checking out the project
 
