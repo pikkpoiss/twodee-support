@@ -44,16 +44,17 @@ fi
 green "OK"
 
 echo -n "Copying VARS (if it doesn't exist)... "
-cp --no-clobber $PROJECTROOT/bootstrap/VARS $DESTPATH
+cp -n $PROJECTROOT/bootstrap/VARS $DESTPATH || true
 green "OK"
 
 cd $PROJECTROOT/bootstrap
-FILES=`find . -type f`
+FILES=`find . -type f ! -name 'VARS'`
 cd $CWD
 source $DESTPATH/VARS
 for f in $FILES; do
   echo -n "Rendering $f ... "
-  envsubst < f > $DESTPATH/f
+  mkdir -p `dirname $DESTPATH/$f`
+  echo "$(eval cat $PROJECTROOT/bootstrap/$f)" > $DESTPATH/$f
   green "OK"
 done
 

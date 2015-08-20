@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
   <key>CFBundleGetInfoString</key>
-  <string>Ludum Dare 32 entry by Arne Roomann-Kurrik, Kalev Roomann-Kurrik, &amp; Wes Goodman.  Version 9.9.9.</string>
+  <string>${2DPROJ_DESC}</string>
   <key>CFBundleExecutable</key>
   <string>launch.sh</string>
   <key>CFBundleIdentifier</key>
-  <string>us.regio.eg</string>
+  <string>${2DPROJ_IDNT}</string>
   <key>CFBundleName</key>
-  <string>Chromos</string>
+  <string>${2DPROJ_NAME}</string>
   <key>CFBundleIconFile</key>
-  <string>chromos.icns</string>
+  <string>icon.icns</string>
   <key>CFBundleShortVersionString</key>
   <string>9.9.9</string>
   <key>CFBundleInfoDictionaryVersion</key>
