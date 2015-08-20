@@ -9,6 +9,7 @@ BUILDROOT = $(APPROOT)/$(PROJECT).app/Contents
 $(BUILDROOT)/MacOS/launch.sh: pkg/osx/launch.sh
 	mkdir -p $(dir $@)
 	cp $< $@
+	chmod +x $@
 
 $(BUILDROOT)/Info.plist: pkg/osx/Info.plist
 	mkdir -p $(dir $@)

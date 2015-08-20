@@ -65,7 +65,7 @@ for f in $WIN_DLLS; do
   green "OK"
 done
 
-GIT_REPO=`git config --get remote.origin.url`
+GIT_REPO=`git config --get remote.origin.url | sed s/twodee-support/twodee/g`
 echo -n "Adding subproject '$GIT_REPO'... "
 cd $DESTPATH/lib
 git submodule add --quiet $GIT_REPO

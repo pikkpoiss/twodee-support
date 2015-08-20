@@ -16,6 +16,9 @@ package main
 
 import (
 	"../lib/twodee"
+	"fmt"
+	"github.com/go-gl/gl/v3.3-core/gl"
+	"runtime"
 )
 
 func init() {
@@ -24,12 +27,14 @@ func init() {
 }
 
 type Application struct {
+	Context *twodee.Context
 }
 
 func NewApplication() (app *Application, err error) {
 	var (
-		name             = "Twodee sample project"
-		winbounds        = twodee.Rect(0, 0, 1024, 640)
+		name      = "Twodee sample project"
+		winbounds = twodee.Rect(0, 0, 1024, 640)
+		context   *twodee.Context
 	)
 	if context, err = twodee.NewContext(); err != nil {
 		return
@@ -39,12 +44,13 @@ func NewApplication() (app *Application, err error) {
 	if err = context.CreateWindow(
 		int(winbounds.Max.X()),
 		int(winbounds.Max.Y()),
-		name
+		name,
 	); err != nil {
 		return
 	}
-	layers = twodee.NewLayers()
-	app = &Application{}
+	app = &Application{
+		Context: context,
+	}
 	fmt.Printf("OpenGL version: %s\n", context.OpenGLVersion)
 	fmt.Printf("Shader version: %s\n", context.ShaderVersion)
 	return
@@ -69,12 +75,8 @@ func main() {
 	}
 	defer app.Delete()
 
-	var (
-		current_time = time.Now()
-		updated_to   = current_time
-		step         = twodee.Step60Hz
-	)
-	for !app.Context.ShouldClose() && !app.State.Exit {
+	for !app.Context.ShouldClose() {
+		app.Context.Events.Poll()
 		app.Draw()
 		app.Context.SwapBuffers()
 	}

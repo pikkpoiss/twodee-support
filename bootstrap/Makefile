@@ -3,7 +3,7 @@
 PROJECT = ${TDP_PROJECT}
 SOURCES = $(wildcard src/*.go)
 ASSETS  = $(wildcard src/resources/*)
-VERSION = $(shell cat VARS | grep TDP_VERSION | sed s/TDP_VERSION=//g)
+VERSION = $(shell cat VARS | grep TDP_VERSION | sed s/export\ TDP_VERSION=//g)
 REPLACE = s/9\.9\.9/$(VERSION)/g
 UNAME   = $(shell uname)
 
